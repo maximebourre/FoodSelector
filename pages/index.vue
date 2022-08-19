@@ -1,14 +1,14 @@
 <template>
   <div>
     <h1>bonjour est</h1>
-    <card :userId="1"/>
+    <Meals :userId="1"/>
   </div>
 </template>
 
 <script>
-import card from '../components/card.vue'
+import Meals from '../components/Meals.vue'
 export default {
-  components: { card },
+  components: { Meals },
   name: 'IndexPage'
 }
 </script>
