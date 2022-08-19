@@ -1,7 +1,19 @@
 <template>
   <div id="global">
-      <div ><h1>Votre meilleur plats :</h1></div>
-      <div><h2>{{info.Meal_name}},{{info.Score}}</h2></div>
+    <div><h1>vos plâts :</h1></div>
+    <div  v-for="(plat,index) in info" :key="index" style="width:100%;" >
+      <div v-if="index<limit" class="meal">
+        <table   >
+        <tbody>
+          <tr>
+            <td v-if="index == 0 " class="bold name">{{plat.Meal_name}}</td>
+            <td v-else class="name" >{{plat.Meal_name}}</td>
+            <td class="score">{{plat.Score}}</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -12,6 +24,7 @@ export default {
     data : function(){
     return{
       info: [],
+      limit: 5,
     }
   },
   created(){
@@ -37,7 +50,7 @@ export default {
     align-items: center;
     justify-content: center;
     margin-top: 10%;
-    width: 20%;
+    width: 250px;
     color: black;
     background-color: rgb(179, 163, 163);
     margin-right: 2%;
@@ -52,5 +65,33 @@ export default {
     padding-top: 3%;
     text-align: center;
     color: #37bb2d;
+    width: 100%;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.meal{
+  border-bottom: 2px solid #37bb2d;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.name{
+  width: 100%;
+}
+.score{
+  text-align: center;
+  width: 100%;
+}
+
+td{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+table{
+  width: 100%;
 }
 </style>
