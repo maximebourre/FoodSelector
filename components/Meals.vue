@@ -28,7 +28,7 @@ export default {
     }
   },
   created(){
-    axios.get("http://foodselector.alwaysdata.net/userMeals/"+this.userId)
+    axios.get("https://foodselector.alwaysdata.net/userMeals/"+this.userId)
     .then((responce) =>{
         console.log(responce)
       this.info = responce.data
