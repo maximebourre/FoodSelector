@@ -5,7 +5,7 @@
       <div v-if="index<limit" class="meal">
         <table   >
         <tbody>
-          <tr>
+          <tr @click="select(plat.Meal_id)">
             <td v-if="index == 0 " class="bold name">{{plat.Meal_name}}</td>
             <td v-else class="name" >{{plat.Meal_name}}</td>
             <td class="score">{{plat.Score}}</td>
@@ -25,12 +25,12 @@ export default {
     return{
       info: [],
       limit: 5,
+      mealSelect:0,
     }
   },
   created(){
     axios.get("https://foodselector.alwaysdata.net/userMeals/"+this.userId)
     .then((responce) =>{
-        console.log(responce)
       this.info = responce.data
     })
     .catch((error)=>{
@@ -38,7 +38,17 @@ export default {
       console.log(error)
     })
   },
-
+  methods:{
+    select: function(id){
+      if(id != this.mealSelect){
+        this.mealSelect = id
+        this.$emit("mealId",id)
+      }else{
+        this.mealSelect = 0
+        this.$emit("mealId",0)
+      }
+    }
+  }
 }
 </script>
 

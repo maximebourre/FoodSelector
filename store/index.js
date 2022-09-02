@@ -7,6 +7,7 @@ Vue.use(Vuex)
 new Vuex.Store({
     state: () => ({
         userInfo: {},
+        users: {},
         Meals: [],
         Ingredients: [],
         UserMeals: [],
@@ -16,6 +17,9 @@ new Vuex.Store({
         setUserInfo(state, userInfo) {
             state.userInfo = userInfo;
         },
+        setUsers(state, users) {
+            state.users = users;
+        },
         setUserMeals(state, userMeals) {
             state.UserMeals = userMeals;
             console.log(userMeals);
@@ -23,15 +27,23 @@ new Vuex.Store({
     },
     actions: {
         setUserInfo(context) {
-            axios.get(`http://foodselector.alwaysdata.net/user/1`)
+            axios.get(`https://foodselector.alwaysdata.net/user/1`)
                 .then((responce) => {
                     context.commit('setUserInfo', responce.data);
                     console.log("axios");
                     console.log(responce.data);
                 });
         },
+        setUsers(context) {
+            axios.get(`https://foodselector.alwaysdata.net/users`)
+                .then((responce) => {
+                    context.commit('setUsers', responce.data);
+                    console.log("axios");
+                    console.log(responce.data);
+                });
+        },
         setUserMeals(context) {
-            axios.get(`http://foodselector.alwaysdata.net/userMeals/1`)
+            axios.get(`https://foodselector.alwaysdata.net/userMeals/1`)
                 .then((responce) => {
                     context.commit('setUserMeals', responce.data);
                 });
@@ -41,6 +53,9 @@ new Vuex.Store({
     getters: {
         getUser(state) {
             return state.userInfo;
+        },
+        getUserMeals(state) {
+            return state.users;
         },
         getUserMeals(state) {
             console.log(state.UserMeals);

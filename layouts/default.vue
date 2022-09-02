@@ -1,11 +1,5 @@
 <template>
   <div id="container">
-    <header>
-      <div >
-        <nuxt-link  class="first" to="/">Accueil</nuxt-link>
-        <!-- {{user.user_name}} -->
-      </div>
-    </header>
     <Nuxt />
   </div>
 </template>
@@ -14,7 +8,7 @@
 import { mapGetters} from "vuex"
 export default {
   computed: {
-    ...mapGetters({user: 'getUser',}), 
+    ...mapGetters({users: 'getUsers',}), 
   },
 }
 </script>
